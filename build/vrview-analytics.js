@@ -25,7 +25,7 @@ a+"px",m=b,r=0);return b},update:function(){l=this.end()}}};"object"===typeof mo
  */
 
 var VRControls = function ( object, onError ) {
-
+    console.log('VRControls created.');
 	var scope = this;
 
 	var vrInputs = [];
@@ -164,7 +164,7 @@ try {
  */
 
 var VREffect = function ( renderer, onError ) {
-
+    console.log('VREffect created.');
 	var vrHMD;
 	var eyeTranslationL, eyeFOVL, rectL;
 	var eyeTranslationR, eyeFOVR, rectR;
@@ -36607,6 +36607,7 @@ if (typeof exports !== 'undefined') {
  * right eye images.
  */
 function Aligner() {
+  console.log('Aligner created.');
   var el = document.createElement('div');
   var s = el.style;
   s.position = 'fixed';
@@ -36660,6 +36661,7 @@ var Util = _dereq_('./util.js');
  * Emits a 'click' event when it's clicked.
  */
 function ButtonManager() {
+  console.log('ButtonManager created.');
   this.loadIcons_();
 
   // Make the fullscreen button.
@@ -36839,6 +36841,7 @@ var Util = _dereq_('./util.js');
 
 
 function ShaderPass(shader) {
+  console.log('ShaderPass created.');
   this.uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 
   this.material = new THREE.ShaderMaterial({
@@ -36861,6 +36864,7 @@ ShaderPass.prototype.render = function(renderFunc, buffer) {
 };
 
 function createRenderTarget(renderer) {
+  console.log('createRenderTarget created.');
   var width  = renderer.context.canvas.width;
   var height = renderer.context.canvas.height;
   var parameters = {
@@ -36874,6 +36878,7 @@ function createRenderTarget(renderer) {
 }
 
 function CardboardDistorter(renderer) {
+  console.log('CardboardDistorter created.');
   this.shaderPass = new ShaderPass(BarrelDistortion);
   this.renderer = renderer;
 
@@ -37005,6 +37010,7 @@ var Distortion = _dereq_('./distortion/distortion.js');
 var Util = _dereq_('./util.js');
 
 function Device(params) {
+  console.log('Device created.');
   this.width = params.width || Util.getScreenWidth();
   this.height = params.height || Util.getScreenHeight();
   this.widthMeters = params.widthMeters;
@@ -37069,6 +37075,7 @@ var DEFAULT_RIGHT_CENTER = {x: 0.5, y: 0.5};
  * params were found.
  */
 function DeviceInfo(deviceParams) {
+  console.log('DeviceInfo created.');
   this.viewer = Viewers.CardboardV1;
   this.updateDeviceParams(deviceParams);
 }
@@ -37250,6 +37257,7 @@ DeviceInfo.prototype.getUndistortedParams_ = function() {
 
 
 function CardboardViewer(params) {
+  console.log('CardboardViewer created.');
   // A machine readable ID.
   this.id = params.id;
   // A human readable label.
@@ -37355,6 +37363,7 @@ module.exports = BarrelDistortionFragment;
  * TODO(smus): Implement coefficient inversion.
  */
 function Distortion(coefficients) {
+  console.log('Distortion Created!!!');
   this.coefficients = coefficients;
 }
 
@@ -38313,6 +38322,7 @@ var ONLINE_DPDB_URL = 'https://storage.googleapis.com/cardboard-dpdb/dpdb.json';
  * device information.
  */
 function Dpdb(fetchOnline, onDeviceParamsUpdated) {
+  console.log('Dpdb Created!!!');
   // Start with the offline DPDB cache while we are loading the real one.
   this.dpdb = DPDB_CACHE;
 
@@ -38463,6 +38473,7 @@ Dpdb.prototype.matchRule_ = function(rule, ua, screenWidth, screenHeight) {
 }
 
 function DeviceParams(params) {
+  console.log('DeviceParams Created!!!');
   this.xdpi = params.xdpi;
   this.ydpi = params.ydpi;
   this.bevelMm = params.bevelMm;
@@ -38487,6 +38498,7 @@ module.exports = Dpdb;
  */
 
 function Emitter() {
+  console.log('Emitter Created!!!');
   this.callbacks = {};
 }
 
@@ -38582,6 +38594,7 @@ module.exports = Modes;
 var Util = _dereq_('./util.js');
 
 function RotateInstructions() {
+  console.log('RotateInstructions Created!!!');
   this.loadIcon_();
 
   var overlay = document.createElement('div');
@@ -38823,6 +38836,7 @@ var VIEWER_KEY = 'WEBVR_CARDBOARD_VIEWER';
  * @param {Object} options Option labels for all valid selections {name: index}.
  */
 function ViewerSelector(options) {
+  console.log('ViewerSelector Created!!!');
   // Try to load the selected key from local storage. If none exists, use the
   // default key.
   try {
@@ -39009,6 +39023,7 @@ var Util = _dereq_('./util.js');
  * Refactored thanks to dkovalev@.
  */
 function AndroidWakeLock() {
+  console.log('AndroidWakeLock Created!!!');
   var video = document.createElement('video');
 
   video.addEventListener('ended', function() {
@@ -39030,6 +39045,7 @@ function AndroidWakeLock() {
 }
 
 function iOSWakeLock() {
+  console.log('iOSWakeLock Created!!!');	
   var timer = null;
 
   this.request = function() {
@@ -39051,6 +39067,7 @@ function iOSWakeLock() {
 
 
 function getWakeLock() {
+  console.log('getWakeLock Created!!!');
   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
   if (userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
     return iOSWakeLock;
@@ -39105,6 +39122,7 @@ var Wakelock = _dereq_('./wakelock.js');
  * - Orientation lock (mobile only)
  */
 function WebVRManager(renderer, effect, params) {
+  console.log('WebVRManager Created!!!');
   this.params = params || {};
 
   this.mode = Modes.UNKNOWN;
@@ -39592,6 +39610,7 @@ module.exports = WebVRManager;
  * The base class for all VR devices.
  */
 function VRDevice() {
+  console.log('VRDevice Created!!!');
   this.hardwareUnitId = 'webvr-polyfill hardwareUnitId';
   this.deviceId = 'webvr-polyfill deviceId';
   this.deviceName = 'webvr-polyfill deviceName';
@@ -39601,6 +39620,7 @@ function VRDevice() {
  * The base class for all VR HMD devices.
  */
 function HMDVRDevice() {
+	console.log('HMDVRDevice Created!!!');
 }
 HMDVRDevice.prototype = new VRDevice();
 
@@ -39608,6 +39628,7 @@ HMDVRDevice.prototype = new VRDevice();
  * The base class for all VR position sensor devices.
  */
 function PositionSensorVRDevice() {
+	console.log('PositionSensorVRDevice Created!!!');
 }
 PositionSensorVRDevice.prototype = new VRDevice();
 
@@ -39645,6 +39666,7 @@ var Eye = {
  * The HMD itself, providing rendering parameters.
  */
 function CardboardHMDVRDevice() {
+  console.log('CardboardHMDVRDevice Created!!!');
   // From com/google/vrtoolkit/cardboard/FieldOfView.java.
   this.setMonocularFieldOfView_(DEFAULT_FIELD_OF_VIEW);
   // Set display constants.
@@ -39803,6 +39825,7 @@ var DEBUG = false;
  *    short term.
  */
 function ComplementaryFilter(kFilter) {
+  console.log('ComplementaryFilter Created!!!');
   this.kFilter = kFilter;
 
   // Raw sensor measurements.
@@ -40156,6 +40179,7 @@ var MOUSE_SPEED_Y = 0.3;
  * events work.
  */
 function MouseKeyboardPositionSensorVRDevice() {
+  console.log('MouseKeyboardPositionSensorVRDevice Created!!!');
   this.deviceId = 'webvr-polyfill:mouse-keyboard';
   this.deviceName = 'VR Position Device (webvr-polyfill:mouse-keyboard)';
 
@@ -40181,6 +40205,14 @@ function MouseKeyboardPositionSensorVRDevice() {
   this.rotateDelta = new THREE.Vector2();
 }
 MouseKeyboardPositionSensorVRDevice.prototype = new PositionSensorVRDevice();
+
+/**
+ * Test function to gain access to setting movement of VR View
+ *
+ */
+MouseKeyboardPositionSensorVRDevice.prototype.hook = function() {
+	console.log("Called MouseKeyboardPositionSensorVRDevice.hook")
+};
 
 /**
  * Returns {orientation: {x,y,z,w}, position: null}.
@@ -40322,6 +40354,7 @@ var DEBUG = false;
  * the corresponding image.
  */
 function PosePredictor(predictionTimeS) {
+  console.log('PosePredictor created.');
   this.predictionTimeS = predictionTimeS;
 
   // The quaternion corresponding to the previous state.
@@ -40378,6 +40411,7 @@ module.exports = PosePredictor;
 
 },{"./three-math.js":9}],8:[function(_dereq_,module,exports){
 function SensorSample(sample, timestampS) {
+  console.log('SensorSample created.');
   this.set(sample, timestampS);
 };
 
@@ -42711,6 +42745,7 @@ var ROTATE_SPEED = 0.5;
  * transformations due to device sensors.
  */
 function TouchPanner() {
+  console.log('TouchPanner created.');
   window.addEventListener('touchstart', this.onTouchStart_.bind(this));
   window.addEventListener('touchmove', this.onTouchMove_.bind(this));
   window.addEventListener('touchend', this.onTouchEnd_.bind(this));
@@ -42839,6 +42874,7 @@ var HMDVRDevice = _dereq_('./base.js').HMDVRDevice;
 var PositionSensorVRDevice = _dereq_('./base.js').PositionSensorVRDevice;
 
 function WebVRPolyfill() {
+  console.log('WebVRPolyfill created.');
   this.devices = [];
 
   if (!this.isWebVRAvailable()) {
@@ -42930,6 +42966,7 @@ var MODE_LABELS = {
 };
 
 function Analytics() {
+  console.log('Analytics created.');
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -42987,6 +43024,7 @@ window.analytics = new Analytics();
  * This is a workaround for https://bugs.webkit.org/show_bug.cgi?id=150072.
  */
 function DeviceMotionReceiver() {
+  console.log('DeviceMotionReceiver created.');
   window.addEventListener('message', this.onMessage_.bind(this), false);
 }
 
@@ -43038,6 +43076,7 @@ module.exports = DeviceMotionReceiver;
 
 
 function Emitter() {
+  console.log('Emitter created.');
   this.initEmitter();
 }
 
@@ -43127,6 +43166,7 @@ module.exports = Eyes;
  * Shows a 2D loading indicator while various pieces of EmbedVR load.
  */
 function LoadingIndicator() {
+  console.log('LoadingIndicator created.');
   this.el = this.build_();
   document.body.appendChild(this.el);
   this.show();
@@ -43223,6 +43263,7 @@ var videoElement = null;
 var loadedScene = null;
 
 function init() {
+  console.log('init created.');
   if (!Util.isWebGLEnabled()) {
     showError('WebGL not supported.');
     return;
@@ -43236,11 +43277,13 @@ function init() {
 }
 
 function loadImage(src, params) {
+  console.log('loadImage created.');
   renderer.on('load', onRenderLoad);
   renderer.setPhotosphere(src, params);
 }
 
 function onSceneLoad(scene) {
+  console.log('onSceneLoad created.');
   if (!scene || !scene.isComplete()) {
     showError('Scene failed to load');
     return;
@@ -43291,6 +43334,7 @@ function onSceneLoad(scene) {
 }
 
 function onVideoLoad() {
+  console.log('onVideoLoad created.');
   // Render the stereo video.
   var params = {
     isStereo: loadedScene.isStereo,
@@ -43314,6 +43358,7 @@ function onVideoLoad() {
 }
 
 function onVideoTap() {
+  console.log('onVideoTap created.');
   hideError();
   videoElement.play();
 
@@ -43322,24 +43367,29 @@ function onVideoTap() {
 }
 
 function onRenderLoad() {
+  console.log('onRenderLoad created.');
   // Hide loading indicator.
   loadIndicator.hide();
 }
 
 function onSceneError(message) {
+  console.log('onSceneError created.');
   showError('Loader: ' + message);
 }
 
 function onRenderError(message) {
+  console.log('onRenderError created.');
   showError('Render: ' + message);
 }
 
 function onVideoError(e) {
+  console.log('onVideoError created.');
   showError('Video load error');
   console.log(e);
 }
 
 function showError(message, opt_title) {
+  console.log('showError created.');
   // Hide loading indicator.
   loadIndicator.hide();
 
@@ -43352,11 +43402,13 @@ function showError(message, opt_title) {
 }
 
 function hideError() {
+  console.log('hideError created.');
   var error = document.querySelector('#error');
   error.classList.remove('visible');
 }
 
 function showStats() {
+  console.log('showStats created.');
   stats.setMode(0); // 0: fps, 1: ms
 
   // Align bottom-left.
@@ -43367,6 +43419,7 @@ function showStats() {
 }
 
 function loop(time) {
+  //console.log('loop created.');
   stats.begin();
   renderer.render(time);
   stats.end();
@@ -43400,6 +43453,7 @@ var VertexDistorter = _dereq_('./vertex-distorter');
 _dereq_('../node_modules/webvr-boilerplate/build/webvr-manager');
 
 function PhotosphereRenderer() {
+  console.log('PhotosphereRenderer created.');
   this.init();
 }
 PhotosphereRenderer.prototype = new Emitter();
@@ -43655,6 +43709,7 @@ module.exports = PhotosphereRenderer;
  * background music.
  */
 function SceneInfo(opt_params) {
+  console.log('SceneInfo created.');
   var params = opt_params || {};
   this.id = params.id;
   this.title = params.title;
@@ -43710,6 +43765,7 @@ var Emitter = _dereq_('./emitter');
 var SceneInfo = _dereq_('./scene-info');
 
 var Query = {
+  //console.log('Query created.');
   JSON_URL: 'url',
   VIDEO_URL: 'video',
   OBJECT_URL: 'object',
@@ -43722,6 +43778,7 @@ var Query = {
 };
 
 function SceneLoader() {
+  console.log('SceneLoader created.');
 }
 SceneLoader.prototype = new Emitter();
 
@@ -43967,6 +44024,7 @@ var NO_DISTORTION = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
  * optimize the rendering process.
  */
 function VertexDistorter(deviceInfo) {
+  console.log('VertexDistorter created.');
   this.texture = null;
   this.isEnabled = false;
 
@@ -44199,6 +44257,7 @@ var currentQueue;
 var queueIndex = -1;
 
 function cleanUpNextTick() {
+    console.log('cleanUpNextTick created.');
     draining = false;
     if (currentQueue.length) {
         queue = currentQueue.concat(queue);
@@ -44211,6 +44270,7 @@ function cleanUpNextTick() {
 }
 
 function drainQueue() {
+	console.log('drainQueue created.');
     if (draining) {
         return;
     }
@@ -44249,6 +44309,7 @@ process.nextTick = function (fun) {
 
 // v8 likes predictible objects
 function Item(fun, array) {
+    console.log('Item created.');
     this.fun = fun;
     this.array = array;
 }

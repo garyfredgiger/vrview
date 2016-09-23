@@ -4,17 +4,20 @@
 		<title>VR view</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <link rel="stylesheet" href="style.css">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="stylesheet" href="style.css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	</head>
 	<body>
-    <div id="error" class="dialog">
-      <div class="wrap">
-        <h1 class="title">Error</h1>
-        <p class="message">An unknown error occurred.</p>
-      </div>
+
+    <div class="container">
+        <h1>tornado WebSocket example</h1>
+        <hr>
+            WebSocket status : <span id="message"></span>
+        <hr>
     </div>
 
     <a id="watermark" href="http://g.co/vr/view" target="_blank">
@@ -22,6 +25,50 @@
     </a>
 
     <!-- <script src="build/vrview-analytics.min.js"></script> -->
-    <script src="/vrview-analytics.js"></script>
+    <script type="text/javascript" src="/vrview-analytics.js"></script>
+
+    <script type="text/javascript">
+        //var vr = require('./vrview-analytics.js');
+
+        var ws = new WebSocket('ws://localhost:8888/ws');
+        var $message = $('#message');
+        ws.onopen = function(){
+            $message.attr("class", 'label label-success');
+            $message.text('open');
+        };
+        ws.onmessage = function(ev){
+            $message.attr("class", 'label label-info');
+            $message.hide();
+            $message.fadeIn("slow");
+            $message.text('recieved message');
+            console.log(ev.data);
+            // var json = JSON.parse(ev.data);
+            // $('#' + json.id).hide();
+            // $('#' + json.id).fadeIn("slow");
+            // $('#' + json.id).text(json.value);
+            // var $rowid = $('#row' + json.id);
+            // if(json.value > 500){
+            //     $rowid.attr("class", "error");
+            // }
+            // else if(json.value > 200){
+            //     $rowid.attr("class", "warning");
+            // }
+            // else{
+            //     $rowid.attr("class", "");
+            // }
+            //MouseKeyboardPositionSensorVRDevice.hook();
+
+
+            // console.log(exports.module.MouseKeyboardPositionSensorVRDevice.phi);
+        };
+        ws.onclose = function(ev){
+            $message.attr("class", 'label label-important');
+            $message.text('closed');
+        };
+        ws.onerror = function(ev){
+            $message.attr("class", 'label label-warning');
+            $message.text('error occurred');
+        };
+    </script>
 	</body>
 </html>
